@@ -68,7 +68,6 @@ class SearchBar extends React.Component {
 
 	handleKeyDown(event) {
 		// 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
-		console.log('woohoo');
 		if (event.key === 'Enter') {
 			this.handleSearch(event);
 		}
