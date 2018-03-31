@@ -16,6 +16,7 @@ class SearchBar extends React.Component {
 			location: '',
 			sortBy: 'best_match'
 		};
+		this.runYelpSearch = this.runYelpSearch.bind(this);
 		this.handleTermChange = this.handleTermChange.bind(this);
 		this.handleLocationChange = this.handleLocationChange.bind(this);
 		this.handleSearch = this.handleSearch.bind(this);
@@ -30,10 +31,17 @@ class SearchBar extends React.Component {
 		}
 	}	
 
+	runYelpSearch() {
+		if (this.state.term && this.state.location && this.state.sortBy) {
+			this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
+		}
+	}
+
 	handleSortByChange(sortByOption) {
 		this.setState({
 			sortBy: sortByOption
 		});
+		this.runYelpSearch();
 	}
 
 	handleTermChange(event) {
@@ -49,9 +57,7 @@ class SearchBar extends React.Component {
 	}
 
 	handleSearch(event) {
-		if (this.state.term && this.state.location && this.state.sortBy) {
-			this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-		}
+		this.runYelpSearch();
 		event.preventDefault();
 	}	
 
@@ -69,7 +75,7 @@ class SearchBar extends React.Component {
 			return <li 
 				className={this.getSortByClass(sortByOptionValue)} 
 				key={"optionValue_" + sortByOptionValue}
-				onClick={this.handleSortByChange.bind(this, sortByOptionValue)} >{sortByOption}</li>;
+				onClick={this.handleSortByChange.bind(this, sortByOptionValue)}>{sortByOption}</li>;
 		});
 	}
 
