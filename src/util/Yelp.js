@@ -26,7 +26,8 @@ let Yelp = {
 						category: business.categories[0].title,
 						rating: business.rating,
 						reviewCount: business.review_count,
-						url: business.url
+						url: business.url,
+						display_address: business.location.display_address.join(' ').replace(' ', '+')
 					}
 				});
 			}
