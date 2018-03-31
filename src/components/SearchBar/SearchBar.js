@@ -1,5 +1,6 @@
 import React from 'react';
 import './SearchBar.css';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
 let sortByOptions = {
@@ -7,6 +8,8 @@ let sortByOptions = {
 	"Highest Rated": "rating",
 	"Most Reviewed": "review_count"
 };
+
+const apiKey = 'AIzaSyDkFiefnNKoLpBG_PbEtBqObVs6ZWwS4tE';
 
 class SearchBar extends React.Component {
 	constructor(props) {
@@ -16,6 +19,8 @@ class SearchBar extends React.Component {
 			location: '',
 			sortBy: 'best_match'
 		};
+		this.onChange = (location) => this.setState({ location });
+
 		this.runYelpSearch = this.runYelpSearch.bind(this);
 		this.handleTermChange = this.handleTermChange.bind(this);
 		this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -65,7 +70,7 @@ class SearchBar extends React.Component {
 		// 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
 		console.log('woohoo');
 		if (event.key === 'Enter') {
-		  this.handleSearch(event);
+			this.handleSearch(event);
 		}
 	 }
 
@@ -80,6 +85,21 @@ class SearchBar extends React.Component {
 	}
 
 	render() {
+
+		const inputProps = {
+			value: this.state.location,
+			onChange: this.onChange,
+			placeholder: 'Where?'
+		};
+
+		const cssClasses = {
+			root: 'autocomplete-form-group',
+			input: 'autocomplete-form-control',
+			autocompleteContainer: 'autocomplete-container',
+			autocompleteItem: 'autocomplete-item',
+			autocompleteItemActive: 'autocomplete-item-active'
+		};
+
 		return (
 			<div className="SearchBar" onKeyDown={this.handleKeyDown}>
 				<div className="SearchBar-sort-options">
@@ -88,8 +108,11 @@ class SearchBar extends React.Component {
 					</ul>
 				</div>
 				<div className="SearchBar-fields">
-					<input placeholder="Search Businesses" onChange={this.handleTermChange} />
-					<input placeholder="Where?" onChange={this.handleLocationChange} />
+					<input className="form-group" placeholder="Search Businesses" onChange={this.handleTermChange} />
+					<PlacesAutocomplete 
+						inputProps={inputProps} 
+						classNames={cssClasses}
+					/>
 				</div>
 
 				<a className="SearchBar-button" onClick={this.handleSearch}>

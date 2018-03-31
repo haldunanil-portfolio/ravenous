@@ -97,3 +97,43 @@
     margin-bottom: .86rem;
   }
 }
+
+/* Autocomplete group CSS */
+.autocomplete-form-group {
+  position: relative;
+  padding-bottom: 0px;
+}
+
+.autocomplete-form-control {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  margin: 0px !important;
+}
+
+.autocomplete-container {
+  
+  background-color: white;
+  position: absolute;
+  z-index: 999;
+  border: 1px solid #fff;
+  border-radius: 4px;
+
+  width: 414px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.autocomplete-item {
+  background-color: #ffffff;
+  font-size: 13.86px;
+  padding: 10px;
+  color: #555555;
+  cursor: pointer;
+  text-align: left;
+}
+
+.autocomplete-item-active {
+  background-color: #fafafa;
+}
+
+
