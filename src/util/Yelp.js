@@ -25,7 +25,8 @@ let Yelp = {
 						zipCode: business.location.zip_code,
 						category: business.categories[0].title,
 						rating: business.rating,
-						reviewCount: business.review_count
+						reviewCount: business.review_count,
+						url: business.url
 					}
 				});
 			}
