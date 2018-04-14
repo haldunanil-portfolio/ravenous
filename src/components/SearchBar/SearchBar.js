@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchBar.css';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 
 let sortByOptions = {
@@ -8,8 +8,6 @@ let sortByOptions = {
 	"Highest Rated": "rating",
 	"Most Reviewed": "review_count"
 };
-
-const apiKey = 'AIzaSyDkFiefnNKoLpBG_PbEtBqObVs6ZWwS4tE';
 
 class SearchBar extends React.Component {
 	constructor(props) {
